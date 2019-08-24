@@ -1,3 +1,4 @@
+
 @media (min-width: 320px){
     .tema{
         font-size: 1.25rem;
@@ -18,40 +19,31 @@
     height: 100% !important;
 }
 
-.btn-secondary {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-}
-
-.card-header{
-    background-color: #005A78;
-}
-
 .tema, .estadoF, .estadoC, .estadoP{
     color: white;
 }
 
 .estadoF, .estadoC, .estadoP{
     width: 152px;
+    border: 1px solid #fff;
     border-radius: 8px;
-    text-align: center;
+    text-align: center;    
 }
 .subtitulo, .infoTema, .card-title, .card-text{
     color: #002E3D;
 }
 
 .estadoF{
-    background-color: rgba(240, 47, 47, 0.8);
+    background-color: rgb(194, 51, 51);
     
 }
 
 .estadoC{
-    background-color: rgba(57, 163, 239, 0.8);
+    background-color: rgb(82, 96, 185);
 }
 
 .estadoP{
-    background-color: rgba(9, 213, 115, 0.8);
+    background-color: rgb(26, 160, 51);
 }
 
 .iconArrow{
@@ -66,4 +58,44 @@
 .sn-icon{
     width: 32px;
     height: 32px;
+}
+
+.tema1, #collapseOne div div div .card{
+    border: 1px solid #f25a5a;
+}
+
+#headingOne{
+    background-color: #f25a5a;
+}
+
+.tema2, #collapseTwo div div div .card{
+    border: 1px solid #136bb2;
+}
+
+#headingTwo{
+    background-color: #136bb2;
+}
+
+.tema3, #collapseThree div div div .card{
+    border: 1px solid #15aa8c;
+}
+
+#headingThree{
+    background-color: #15aa8c;
+}
+
+.tema4, #collapseFour div div div .card{
+    border: 1px solid #c83d85;
+}
+
+#headingFour{
+    background-color: #c83d85;
+}
+
+.tema5, #collapseFive div div div .card{
+    border: 1px solid #f48d2b;
+}
+
+#headingFive{
+    background-color: #f48d2b;
 }
