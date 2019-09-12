@@ -9,6 +9,31 @@
     }
 }
 
+.overlay{
+    background-color: rgba(0, 0, 0,0.7);
+}
+
+.inicio{
+    background-image: url("../images/bghealth.jpg");
+    background-color: rgb(105, 105, 105);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.headerC{
+    color: #005A78;
+}
+
+main > .container-flex {
+    padding: 80px 0 0 0;
+}
+
+.logoSSY{
+    height: 64px;
+    width: auto;
+}
+
 .bg-img{
     position: absolute;
     left: 0px;
