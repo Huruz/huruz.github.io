@@ -29,7 +29,7 @@
     <!--Header-->
     <header>
         <!-- Fixed navbar -->
-        <nav class="navbar navbar-expand-md fixed-top bg-white">
+        <nav class="navbar navbar-expand-md fixed-top bg-white" id="navbarSSY">
             <a class="navbar-brand" href="#">
                 <img src="../images/logossy.jpg" class="logoSSY" alt="Logo SSY">
             </a>
@@ -40,16 +40,16 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link headerC font-weight-bolder" href="#"><i class="fas fa-home"></i> Inicio</a>
+                        <a class="nav-link headerC font-weight-bolder" href="#inicio"><i class="fas fa-home"></i> Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link headerC font-weight-bolder" href="#"><i class="fas fa-chalkboard-teacher"></i> Ponencias</a>
+                        <a class="nav-link headerC font-weight-bolder" href="#ponenciasList"><i class="fas fa-chalkboard-teacher"></i> Ponencias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link headerC font-weight-bolder" href="#"><i class="fas fa-users"></i> Organizadores</a>
+                        <a class="nav-link headerC font-weight-bolder" href="#slider"><i class="fas fa-users"></i> Organizadores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link headerC font-weight-bolder" href="#"><i class="fas fa-map-marker-alt"></i> Ubicación</a>
+                        <a class="nav-link headerC font-weight-bolder" href="#ubicacion"><i class="fas fa-map-marker-alt"></i> Ubicación</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link headerC font-weight-bolder" href="#"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</a>
@@ -60,7 +60,7 @@
     </header>
 
     <main role="main" class="flex-shrink-0">
-        <div class="container-flex">
+        <div class="container-flex" >
             <!-- 
     <div class="container-flex mx-5 mt-5">
         <section class="menu cid-qpg357PDtf" id="menu2-d" data-rv-view="7077">
@@ -95,6 +95,7 @@
         <div class="container">
             <div class="media-container-column mbr-white col-md-12"></div>
         </div>
+
         <section class="header13 cid-qpgmMqZcwT mbr-fullscreen mbr-parallax-background" id="header13-l" data-rv-view="7107">
             <div class="mbr-overlay" style="opacity: 0.6; background-color: black;"></div>
             <div class="container">
@@ -111,6 +112,7 @@
                 <div class="container">
                     <div class="media-container-column" data-form-type="formoid">
                         <div data-form-alert="" hidden="">¡Gracias por registrarse!</div>
+
                         <form class="form-inline" action="https://mobirisethemes.com/" method="post" data-form-title="Mobirise Form">
                             <input type="hidden" value="wsnF+xo260/JcvwFBnfizX4wBkloRfrexOpvlcEu9BbRA+CZAM94shpmq8zCQQEaBlphAc3ZNreNGAxUrxxbpxk5u6UBmfJgvVhDfb0jxdnsv6gFnjaLty/b4XwCZM1z" data-form-email="true">
                             <div class="buttons-wrap">
@@ -123,6 +125,7 @@
         </section>
     </div>
     -->
+            <div class="hueco" id="inicio"></div>
             <div class="container-flex inicio mx-5">
                 <div class="container-flex py-5 overlay text-white">
                 <h3 class="my-3 text-center">Cómite Estatal de Calidad en Salud</h3>
@@ -228,8 +231,9 @@
             </div>
             <!--Fin de Modal-->
 
-            <div class="container-flex mx-5 mt-5 ">
-                <div class="ponenciasList" id="ponenciasList">
+            <div class="hueco" id="ponenciasList"></div>
+            <div class="container-flex mx-5">
+                <div class="ponenciasList">
                     <!--Tema 1-->
                     <div class="card ponencia my-2 tema1">
                         <a class="" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
@@ -487,7 +491,8 @@
                 </div>
             </div>
 
-            <div class="container-flex mx-5 mt-5" id="#slider">
+            <div class="hueco" id="slider"></div>
+            <div class="container-flex mx-5">
 
                 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -587,7 +592,8 @@
                 </div>
             </div>
 
-            <div class="map-responsive mt-5 mx-5">
+            <div class="hueco" id="ubicacion"></div>
+            <div class="map-responsive mx-5">
                 <iframe src="https://maps.google.com/maps?q=hospital%20susula&t=&z=13&ie=UTF8&iwloc=&output=embed"
                     width="1920" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>

@@ -1,5 +1,5 @@
 
-@media (min-width: 320px){
+@media (max-width: 576px){
     .tema{
         font-size: 1.25rem;
     }
@@ -7,10 +7,26 @@
     .heading{
         padding: .5rem;
     }
+    
+    h1{
+        font-size: 1rem;
+    }
+    
+    h3{
+        font-size: .75rem
+    }
+}
+
+body{
+    position: relative;
 }
 
 .overlay{
     background-color: rgba(0, 0, 0,0.7);
+}
+
+.hueco{
+    height: 80px;
 }
 
 .inicio{
@@ -25,13 +41,10 @@
     color: #005A78;
 }
 
-main > .container-flex {
-    padding: 80px 0 0 0;
-}
-
 .logoSSY{
-    height: 64px;
+    height: 48px;
     width: auto;
+    max-width: 144px;
 }
 
 .bg-img{
