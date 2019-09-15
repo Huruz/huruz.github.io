@@ -33,7 +33,6 @@
                         "institucion": $('#institucion').val(),
                         "rfc": rfc
                     };
-                    
                     $.ajax({
                         // En data puedes utilizar un objeto JSON, un array o un query string
                         data: dataForm,
