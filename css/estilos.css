@@ -1,142 +1,155 @@
 .wrapper{
-background:#758ccb;
-}
-
-.section-padding{
-  padding: 60px 0;
-}
-
-.testimonial-carousel{
-  margin:5% auto 0;
-}
-
-.img-area{
-  width: 200px;
-  height: 200px;
-  display: block;
-  overflow: hidden;
-  border-radius: 50%;
-  margin: 0 auto;
-
-}
-.single-testi{
-  background:#Ffffff;
-  padding:5%;
-  margin: 3%;
-  text-align: center;
-  border-radius: 100px 0 100px;
-
-}
-
-.img-text h2{
-  text-transform: uppercase;
-  margin:20px 0 -15px;
-  color:#8975cb;
-}
-
-.hr{
-  color: #fff;
-}
-.owl-nav{
-  display: none;
-}
-
-.img-text h3{
-color: #b7cb75;
-}
-
-.img-text p{
-  color: #75b7cb;
-}
-.owl-dots{
-  text-align: center;
-}
- 
- .owl-dot {
-  display: inline-block;
-  height: 15px !important;
-  width: 15px !important;
-  background-color: #F30627;
-  border-radius: 50%
-  opacity:0.8;
- 
-   }
-
-   .owl-dot .active{
-    background-color:#F30627 !important;
-   }
-
-/*maps*/
-
-.map-responsive{
-    overflow:hidden;
-    padding-bottom:450px;
-    position:relative;
-    height:100%;
-}
-.map-responsive iframe{
-    left:0;
-    top:0;
-    width:100%;
-
-    position:absolute;
-}
-
-
-
-/*medias carousel*/
-
-@media only screen and (min-width:768px ) and (max-width: 991px){
-  .wrapper{
-    width: 87%;
+  background:#758ccb;
+  
   }
-
+  
+  
+  .testimonial-carousel{
+    margin:5% auto 0;
+  }
+  
   .img-area{
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
+    display: block;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 auto;
+  
   }
-   .img-text p{
-    font-size: 14px;
+  .single-testi{
+    background:#Ffffff;
+    padding:5%;
+    margin: 3%;
+    text-align: center;
+    border-radius: 100px 0 100px;
+  
   }
-
-}
-
-@media only screen and(max-width: 768px){
-  .wrapper{
-    width: 90%
+  
+  .img-text h2{
+    text-transform: uppercase;
+    margin:20px 0 -15px;
+    color:#8975cb;
   }
-
-  .img-area{
-    width: 150px;
-    height: 150px;
+  
+  .hr{
+    color: #fff;
   }
-   .img-text p{
-    font-size: 14px;
-  }
-
-}
-
-@media only screen and (min-width:375px ) and (max-width: 767px){
-  .wrapper{
-    width: 75%;
-    
-  }
-
-  .hueco{
+  .owl-nav{
     display: none;
   }
-
-  .img-area{
-    width: 150px;
-    height: 150px;
+  
+  .img-text h3{
+  color: #b7cb75;
   }
-
+  
   .img-text p{
-    font-size: 14px;
+    color: #75b7cb;
   }
- @media only screen and(max-width: 320px){
-   .wrapper{
-    width: 71%
-   }
-
-}
+  .owl-dots{
+    text-align: center;
+  }
+   
+   .owl-dot {
+    display: inline-block;
+    height: 15px !important;
+    width: 15px !important;
+    background-color: #F30627;
+    border-radius: 50%
+   
+    }
+  
+     .owl-dot .active{
+      background-color:#F30627 !important;
+     }
+  
+  /*maps*/
+  
+  .map-responsive{
+      overflow:hidden;
+      padding-bottom:450px;
+      position:relative;
+      height:100%;
+  }
+  .map-responsive iframe{
+      left:0;
+      top:0;
+      width:100%;
+  
+      position:absolute;
+  }
+  
+  
+  
+  /*medias carousel*/
+  
+  
+  
+  @media only screen and (min-width:1024px ){
+    .wrapper{
+      width: 87%;
+      margin-top: -35px;
+    }
+  
+    .img-area{
+      width: 150px;
+      height: 150px;
+    }
+     .img-text p{
+      font-size: 14px;
+    }
+  
+  }
+  
+  
+  @media only screen and (min-width:768px ) and (max-width: 991px){
+    .wrapper{
+      width: 87%;
+    }
+  
+    .img-area{
+      width: 150px;
+      height: 150px;
+    }
+     .img-text p{
+      font-size: 14px;
+    }
+  
+  }
+  
+  @media only screen and(min-width: 768px){
+    .wrapper{
+      width: 90%
+    }
+  
+    .img-area{
+      width: 150px;
+      height: 150px;
+    }
+     .img-text p{
+      font-size: 14px;
+    }
+  
+  }
+  
+  @media only screen and (min-width:374px ) and (max-width: 767px){
+    .wrapper{
+      width: 75%;
+      
+    }
+  
+  
+    .img-area{
+      width: 150px;
+      height: 150px;
+    }
+  
+    .img-text p{
+      font-size: 14px;
+    }
+   @media only screen and(max-width: 320px){
+     .wrapper{
+      width: 71%
+     }
+    }
+  }
