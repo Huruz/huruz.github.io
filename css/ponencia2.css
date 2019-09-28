@@ -158,3 +158,8 @@ body{
 .nav-link.active{
     background-color: #005A78 !important;
 }
+
+.circular{
+    width: 120px;
+    height: 120px;
+}
