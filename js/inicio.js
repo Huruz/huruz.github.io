@@ -25,7 +25,7 @@
                     if (document.getElementById("rfc").required === true && $('#institucion').val() === "ISSSTE" && $('#rfc').val() != null && $('#rfc').val() != "") {
                         rfc = $('#rfc').val();
                     } else {
-                        rfc = null;
+                        rfc = "NULL";
                     }
                     var dataForm = {
                         "nombre": $('#nombre').val(),
@@ -37,12 +37,12 @@
                         // En data puedes utilizar un objeto JSON, un array o un query string
                         data: dataForm,
                         type: "POST",
-                        url: "http://localhost/send.php",
+                        url: "http://localhost/jornada1ssy/php/inscribir.php",
                     })
                     .done(function( data, textStatus, jqXHR ) {
                         if ( console && console.log ) {
-                            alert("Nuevo registro: "+data.name+", "+data.email+", "+data.institution+", "+data.validated);
-                            console.log(data);
+                            alert("Mensaje: "+data.msg);
+                            console.log(data.msg);
                         }
                     })
                     .fail(function( jqXHR, textStatus, errorThrown ) {
