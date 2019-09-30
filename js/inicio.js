@@ -11,7 +11,7 @@
         $('#email').val(null);
         $('#institucion').val("");
         $('#rfc').val(null);
-        $('#ISSSTE').hide();
+        $('#SSY').hide();
 
         // Loop over them and prevent submission
         $('#registrarBtn').on("click", function () {
@@ -22,7 +22,7 @@
                     console.log("No válido");
                 } else {
                     var rfc;
-                    if (document.getElementById("rfc").required === true && $('#institucion').val() === "ISSSTE" && $('#rfc').val() != null && $('#rfc').val() != "") {
+                    if (document.getElementById("rfc").required === true && $('#institucion').val() === "ssy" && $('#rfc').val() != null && $('#rfc').val() != "") {
                         rfc = $('#rfc').val();
                     } else {
                         rfc = "NULL";
@@ -60,11 +60,11 @@
 function mostrarExtras(combo) {
     var tipo = $(combo).children("option:selected").val();
     var rfc = document.getElementById("rfc");
-    if (tipo == "ISSSTE") {
-        $('#ISSSTE').show();
+    if (tipo == "ssy") {
+        $('#SSY').show();
         rfc.required = true;
     } else {
-        $('#ISSSTE').hide();
+        $('#SSY').hide();
         rfc.required = false;
         $(rfc).val(null);
     }

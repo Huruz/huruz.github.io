@@ -62,9 +62,8 @@
                                 class="fas fa-map-marker-alt"></i> Ubicación</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link headerC font-weight-bolder"
-                            href="http://localhost:8089/phpmaker/ssy_evento1/inscripcionlist.php"><i
-                                class="fas fa-sign-in-alt"></i> Iniciar sesión</a>
+
+                        <a class="nav-link headerC font-weight-bolder" href="http://localhost/jornada1ssy/ssy_evento1/login.php"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</a>
 
                     </li>
                 </ul>
@@ -112,11 +111,11 @@
                             <div class="modal-body">
                                 <div class="form-row">
                                     <div class="col-md-6 mb-3">
-                                        <label for="nombre">Nombre completo</label>
+                                        <label for="nombre">Nombre Completo</label>
                                         <input type="text" class="form-control" id="nombre" name="nombre" minlength="5"
-                                            placeholder="Nombre completo" required>
+                                            placeholder="Nombre Completo" required>
                                         <div class="invalid-feedback">
-                                            Campo incompleto
+                                            Se requieren mínimo 5 carácteres
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
@@ -127,53 +126,51 @@
                                             Campo incompleto
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="institucion">Institución de proveniencia</label>
+                                    <div class="col-12 mb-3">
+                                        <label for="institucion">Institución de procedencia</label>
                                         <select id="institucion" class="form-control" name="institucion"
                                             onchange="mostrarExtras(this)" required>
                                             <option value="" selected="selected">Escoge tu institución ...</option>
-                                            <option value="IMSS">IMSS</option>
-                                            <option value="ISSSTE">ISSSTE</option>
-                                            <option value="UADY">UADY</option>
+                                            <option value="anahuac">Anáhuac Mayab</option>
+                                            <option value="hraepy">Hospital Regional de Alta Especialidad de Yucatán</option>
+                                            <option value="hmrem">Hospital Militar Regional de Especialidades de Mérida</option>
+                                            <option value="imss">IMSS</option>
+                                            <option value="issste">ISSSTE</option>
+                                            <option value="naval">Novena Zona Naval</option>
+                                            <option value="ssy">Secretaría de Salud de Yucatán</option>
+                                            <option value="uady">UADY</option>
                                         </select>
                                         <div class="invalid-feedback">
                                             Escoge tu institución
                                         </div>
                                     </div>
-                                    <div class="col-md-6 mb-3">
                                         <!--Campos del SSY-->
-                                        <div id="ISSSTE" class="form-row">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="rfc">RFC</label>
-                                                <input type="text" class="form-control" id="rfc" name="rfc"
-                                                    minlength="5" placeholder="RFC" required>
-                                                <div class="invalid-feedback">
-                                                    Campo incompleto
-                                                </div>
-                                            </div>
+                                    <div id="SSY" class="col-md-6 mb-3">
+                                        <label for="rfc">RFC</label>
+                                        <input type="text" class="form-control" id="rfc" name="rfc"
+                                            minlength="5" placeholder="RFC" required>
+                                        <div class="invalid-feedback">
+                                            Campo incompleto
                                         </div>
-                                        <!--Fin de camops del SYY-->
                                     </div>
+                                    <!--Fin de campos del SYY-->
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value="" id="invalidCheck"
                                             aria-describedby="passwordHelpBlock" required>
                                         <label class="form-check-label" for="invalidCheck">
-                                            Acepta que la información proporcionada es correcta y verídica.
+                                            Constato que la información proporcionada es verídica y correcta; y doy autorización para su uso en la generación de la constancia al finalizar el evento.
                                         </label>
                                         <div class="invalid-feedback">
-                                            Debes aceptar que la información proporcionada es correcta y verídica.
+                                            La informacion será usada para la generacion de su constancia 
                                         </div>
                                         <small id="passwordHelpBlock" class="form-text text-muted">
-                                            Antes del registro, verifica que la información proporcionada en los campos
-                                            anteriores es exacta, ya que dicha información será usada para generar tu
-                                            constancia
+                                            Para cualquier solicitud de cambio, favor de contáctarse a huruz9703@gmail.com
                                         </small>
                                     </div>
                                 </div>
+                                <div class="alert p-0 m-0">Mensaje</div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -213,7 +210,7 @@
                             data-parent="#ponenciasList">
                             <div class="card-body">
                                 <h4 class="subtitulo"></h4>
-                                <h5 class="infoTema">Horario: 8.30 - 9.30.<br>Lugar: Auditorio</h5>
+                                <h5 class="infoTema">Horario: 9.00 - 9.30.<br>Lugar: Auditorio</h5>
                                 <div class="row my-2 justify-content-center">
                                     <div class="col-10 col-sm-5 col-lg-4 p-0 px-md-5 my-2 mx-auto">
                                         <div class="card py-1 p-sm-3">
@@ -235,6 +232,8 @@
                             </div>
                         </div>
                     </div>
+                    <h3 class="my-2 py-2 rounded text-center bg-light">9.30 - 10.10 Inauguración</h3>
+                    <h3 class="my-2 py-2 rounded text-center bg-light">10.10 - 10.30 Receso</h3>
                     <!--Tema 2-->
                     <div class="card ponencia my-2 tema2">
 
@@ -262,7 +261,7 @@
                             data-parent="#ponenciasList">
                             <div class="card-body">
                                 <h4 class="subtitulo">Desde la Perspectiva Interinstitucional</h4>
-                                <h5 class="infoTema">Horario: 10.30 - 11.45.<br>Lugar: Auditorio</h5>
+                                <h5 class="infoTema">Horario: 10.30 - 11.50.<br>Lugar: Auditorio</h5>
                                 <div class="row my-2 justify-content-center">
                                     <div class="col-10 col-sm-5 col-lg-4 p-0 px-md-5 my-2 mx-auto">
                                         <div class="card py-1 p-sm-3">
@@ -271,7 +270,7 @@
                                                     class="circular rounded" alt="...">
                                             </div>
                                             <div class="card-body py-1 px-2">
-                                                <h5 class="card-title">Dra. Guadalupe Utrilla Lazos / Mesa Panel</h5>
+                                                <h5 class="card-title">Dra. Guadalupe Utrilla Lazos</h5>
                                                 <p class="card-text">IMSS. Modelo de Gestión Institucional</p>
                                                 <div class="m-0 p-0 d-flex justify-content-center">
                                                     <a href="#" class="btn btn-primary">Ver información</a>
@@ -286,8 +285,7 @@
                                                     class="circular rounded" alt="...">
                                             </div>
                                             <div class="card-body py-1 px-2">
-                                                <h5 class="card-title">Lic. Enf. Glandy Anilú Bojórquez Sabido / Mesa
-                                                    Panel</h5>
+                                                <h5 class="card-title">Lic. Enf. Glandy Anilú Bojórquez Sabido</h5>
                                                 <p class="card-text">HRAEPY. Modelo de Gestión del Consejo Nacional de
                                                     Salubridad</p>
                                                 <div class="m-0 p-0 d-flex justify-content-center">
@@ -303,9 +301,7 @@
                                                     class="circular rounded" alt="...">
                                             </div>
                                             <div class="card-body py-1 px-2">
-                                                <h5 class="card-title">Dra. Blandina del R. Lizama Maldonado / Mesa
-                                                    Panel
-                                                </h5>
+                                                <h5 class="card-title">Dra. Blandina del R. Lizama Maldonado</h5>
                                                 <p class="card-text">SSY. Modelo de Gestión de Calidad en Salud</p>
                                                 <div class="m-0 p-0 d-flex justify-content-center">
                                                     <a href="#" class="btn btn-primary">Ver información</a>
@@ -344,7 +340,7 @@
                             data-parent="#ponenciasList">
                             <div class="card-body">
                                 <h4 class="subtitulo">Una enfoque desde la formacion del recurso humano</h4>
-                                <h5 class="infoTema">Horario: 11.45 - 12.15.<br>Lugar: Auditorio</h5>
+                                <h5 class="infoTema">Horario: 11.50 - 12.20.<br>Lugar: Auditorio</h5>
                                 <div class="row my-2 justify-content-center">
                                     <div class="col-10 col-sm-5 col-lg-4 p-0 px-md-5 my-2 mx-auto">
                                         <div class="card py-1 p-sm-3">
@@ -392,7 +388,7 @@
                             data-parent="#ponenciasList">
                             <div class="card-body">
                                 <h4 class="subtitulo">Experiencia en el Sanatorio Naval de Yukalpetén</h4>
-                                <h5 class="infoTema">Horario: 12.15 - 13.45.<br>Lugar: Auditorio</h5>
+                                <h5 class="infoTema">Horario: 12.20 - 12.50.<br>Lugar: Auditorio</h5>
                                 <div class="row my-2 justify-content-center">
                                     <div class="col-10 col-sm-5 col-lg-4 p-0 px-md-5 my-2 mx-auto">
                                         <div class="card py-1 p-sm-3">
@@ -440,7 +436,7 @@
                             data-parent="#ponenciasList">
                             <div class="card-body">
                                 <h4 class="subtitulo">Experiencias de Infecciones Asociadas a la Atención en Salud</h4>
-                                <h5 class="infoTema">Horario: 13.45 - 14.15.<br>Lugar: Auditorio</h5>
+                                <h5 class="infoTema">Horario: 12.50 - 13.50.<br>Lugar: Auditorio</h5>
                                 <div class="row my-2 justify-content-center">
                                     <div class="col-10 col-sm-5 col-lg-4 p-0 px-md-5 my-2 mx-auto">
                                         <div class="card py-1 p-sm-3">
@@ -449,7 +445,7 @@
                                                     alt="...">
                                             </div>
                                             <div class="card-body py-1 px-2">
-                                                <h5 class="card-title">Dr. Carlos Gabriel Nieto Molina / Mesa Panel</h5>
+                                                <h5 class="card-title">Dr. Carlos Gabriel Nieto Molina</h5>
                                                 <p class="card-text">ISSSTE</p>
                                                 <div class="m-0 p-0 d-flex justify-content-center">
                                                     <a href="#" class="btn btn-primary">Ver información</a>
@@ -464,8 +460,7 @@
                                                     class="circular rounded" alt="...">
                                             </div>
                                             <div class="card-body py-1 px-2">
-                                                <h5 class="card-title">Dr. Edgar Mario Hernández Urbina / Mesa Panel
-                                                </h5>
+                                                <h5 class="card-title">Dr. Edgar Mario Hernández Urbina</h5>
                                                 <p class="card-text">IMSS</p>
                                                 <div class="m-0 p-0 d-flex justify-content-center">
                                                     <a href="#" class="btn btn-primary">Ver información</a>
@@ -480,8 +475,7 @@
                                                     class="circular rounded" alt="...">
                                             </div>
                                             <div class="card-body py-1 px-2">
-                                                <h5 class="card-title">Dr. Joaquín Ernesto Montero Aguirre / Mesa Panel
-                                                </h5>
+                                                <h5 class="card-title">Dr. Joaquín Ernesto Montero Aguirre</h5>
                                                 <p class="card-text">SSY</p>
                                                 <div class="m-0 p-0 d-flex justify-content-center">
                                                     <a href="#" class="btn btn-primary">Ver información</a>
@@ -493,11 +487,11 @@
                             </div>
                         </div>
                     </div>
+                    <h3 class="my-2 py-2 text-center bg-light">13.50 - 14.00 Clausura</h3>
                 </div>
             </div>
             <div class="hueco" id="slider"></div>
             <div class="wrapper mx-5">
-
                 <p class="text-center">Nuestros Colaboradores</p>
                 <div class="customer-logos">
 
@@ -511,11 +505,9 @@
                     <div class="slide"><img src="../images/hospital_militar.jpg"></div>
                     <div class="slide"><img src="../images/anahuac.png"></div>
                 </div>
-
             </div>
 
             <div class="hueco" id="ubicacion"></div>
-            <br>
             <div class="map-responsive mx-5">
                 <iframe src="https://maps.google.com/maps?q=hospital%20susula&t=&z=13&ie=UTF8&iwloc=&output=embed"
                     width="1920" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -552,8 +544,8 @@
                     <div class="row mx-0 my-2 my-md-0 p-0">
                         <div class="col-5 col-md-10 mx-auto my-0 p-0"><img class="img-fluid rounded"
                                 src="../images/logossy.jpg" alt="Logo SSY"></div>
-                        <div class="col-5 col-md-10 mx-auto my-0 my-md-2 p-0"><img class="img-fluid rounded"
-                                src="../images/logossy.jpg" alt="Logo SSY"></div>
+                        <div class="col-5 col-md-10 mx-auto my-0 my-md-2 p-0"><img class="img-fluid rounded bg-white"
+                                src="../images/Secretariasalud.png" alt="Logo SSY"></div>
                     </div>
                 </div>
             </div>

@@ -30,11 +30,6 @@
     }
 }
 
-body{
-    position: relative;
-}
-.row::after, .row::before{display: none}
-
 .overlay{
     background-color: rgba(0, 0, 0,0.7);
 }
@@ -163,4 +158,5 @@ body{
 .circular{
     width: 120px;
     height: 120px;
+    box-shadow:  0 4px 8px 0 rgba(0, 0, 0, 0.3);
 }

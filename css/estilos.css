@@ -1,69 +1,49 @@
-
-
-/*
-
-.wrapper{
-background:#758ccb;
-
+html{
+	scroll-behavior: smooth;
 }
 
 
 
-.img-area{
-  width: 200px;
-  height: 200px;
-  display: block;
-  overflow: hidden;
-  border-radius: 50%;
-  margin: 0 auto;
-
+@media (min-width: 319px){
+	.wrapper p{
+	font-size: 25px;
+	font-family: Roboto;
+	text-align: center;
+	color:gray;
 }
-.single-testi{
-  background:#Ffffff;
-  padding:5%;
-  margin: 3%;
-  text-align: center;
-  border-radius: 100px 0 100px;
+@media (min-width: 576px) { 
 
+.wrapper p{
+	font-size: 35px;
+	font-family: Roboto;
+	text-align: center;
+	color:gray;
 }
 
-.img-text h2{
-  text-transform: uppercase;
-  margin:20px 0 -15px;
-  color:#8975cb;
+
 }
 
-.hr{
-  color: #fff;
-}
-.owl-nav{
-  display: none;
+
+@media (min-width: 992px) { 
+.wrapper p{
+	font-size: 35px;
+	font-family: Roboto;
+	text-align: center;
+	color:gray;
+    }
 }
 
-.img-text h3{
-color: #b7cb75;
+
+
+@media (min-width: 1200px) { 
+.wrapper p{
+	font-size: 40px;
+	font-family: Roboto;
+	text-align: center;
+	color:gray;
 }
 
-.img-text p{
-  color: #75b7cb;
 }
-.owl-dots{
-  text-align: center;
-}
- 
- .owl-dot {
-  display: inline-block;
-  height: 15px !important;
-  width: 15px !important;
-  background-color: #F30627;
-  border-radius: 50%
- 
-  }
-
-   .owl-dot .active{
-    background-color:#F30627 !important;
-   }
-*/
 
 .slick-slide {
     margin: 0px 20px;
