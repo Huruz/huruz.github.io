@@ -30,10 +30,6 @@
     }
 }
 
-.overlay{
-    background-color: rgba(0, 0, 0,0.7);
-}
-
 .hueco{
     height: 90px;
 }
@@ -46,7 +42,7 @@
 }
 
 .headerC{
-    color: #005A78;
+    color: #a01c44;
 }
 
 .logoSSY{
@@ -151,7 +147,7 @@
 }
 
 .nav-link.active{
-    background-color: #005A78 !important;
+    background-color: #a01c44 !important;
 }
 
 .circular{
