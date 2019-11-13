@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--<meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+    <title>Ponencias</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/ponencia.css">
+</head>
+<body>
+    <h1>Ejemplo de Ponencias con Collapse</h1>
+    <div class="container-flex mx-3">
+        <button class="btn btn-primary" id="btnTime">Tiempo</button>
+        <p id="hora"></p>
+    </div>
+    
+    <!--Footer-->
+    <footer id="sticky-footer" class="mt-5 py-3 text-white">
+        <div class="footer container-fluid my-0 px-3">
+            <div class="row mx-1 my-2">
+                <div class="col-12 col-sm-8 col-md-6 my-2 text-wrap">
+                    <h4>Comité de Calidad del Estado de Yucatán</h4>
+                    Oficinas administrativas:<br>
+                    <span class="font-weight-bolder">Dirección:</span> Calle 72 #463 por 53 y 55 Col. Centro. Mérida, Yucatán<br>
+                    <span class="font-weight-bolder">Teléfono:</span> 930.30.50<br>
+                    <span class="font-weight-bolder">Horario de Atención:</span> Lunes a Viernes de 8 A.M. a 4 P.M.<br>
+                    <span class="font-weight-bolder">E-mail:</span> buzonsalud@ssy.gob.mx<br>
+                </div>
+                <div class="col-12 col-sm-4 col-md-2 my-2">
+                    <p class="mb-1">Síguenos:</p>
+                    <div class="d-flex flex-row flex-wrap justify-content-around my-1">
+                        <img class="sn-icon" src="../images/icons/linkedin-white.png" alt="LinkedIn Icon">
+                        <img class="sn-icon p-1" src="../images/icons/facebook-white.png" alt="Facebook Icon">
+                        <img class="sn-icon" src="../images/icons/instagram-white.png" alt="Instagram Icon">
+                        <img class="sn-icon" src="../images/icons/twitter-white.png" alt="Twitter Icon">
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 ml-lg-auto my-2">
+                    <div class="row mx-0 my-2 my-md-0 p-0">
+                        <div class="col-5 col-md-10 mx-auto my-0 p-0"><img class="img-fluid rounded" src="../images/logossy.jpg" alt="Logo SSY"></div>
+                        <div class="col-5 col-md-10 mx-auto my-0 my-md-2 p-0"><img class="img-fluid rounded" src="../images/logossy.jpg" alt="Logo SSY"></div>
+                    </div>
+                </div>
+            </div>
+            <h6 class="text-wrap text-center font-weight-light my-0">Derechos Reservados 2018 | Servicios de Salud de Yucatán</h6>
+        </div>
+    </footer>
+    
+<!--Scripts-->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+    var Hra = setInterval(Timer, 1000);
+    
+    function Timer(){
+        fecha = new Date();
+        hora = fecha.getHours();
+        minutos = fecha.getMinutes();
+        segundos = fecha.getSeconds();
+        dia = fecha.getDate();
+
+        $('#hora').text(hora + " : "+ minutos + " : "+ segundos);
+    }
+</script>
+</body>
+</html>

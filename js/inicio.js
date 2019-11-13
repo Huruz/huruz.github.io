@@ -37,18 +37,27 @@
                         // En data puedes utilizar un objeto JSON, un array o un query string
                         data: dataForm,
                         type: "POST",
-                        url: "http://localhost/jornada1ssy/php/inscribir.php",
+                        url: "http://www.jornadacecas.xyz/inscribir.php"
                     })
                     .done(function( data, textStatus, jqXHR ) {
+                        $('#alerta').text(data.msg);
                         if ( console && console.log ) {
                             alert("Mensaje: "+data.msg);
                             console.log(data.msg);
                         }
+
+                        setTimeout(function(){
+                            $('#modalForm').modal('hide');
+                        },5000);
                     })
                     .fail(function( jqXHR, textStatus, errorThrown ) {
+                        $('#alerta').text(textStatus);
                         if ( console && console.log ) {
                             console.log( "La solicitud a fallado: " +  textStatus);
                         }
+                        setTimeout(function(){
+                            $('#modalForm').modal('hide');
+                        },5000);
                     });
                 }
                 form.classList.add('was-validated');
