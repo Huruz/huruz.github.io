@@ -41,7 +41,12 @@
     background-size: cover;
 }
 
-.headerC, .bgInicio{
+.bgInicio{
+    background-color: #a01c44;
+    color: white;
+}
+
+.headerC{
     color: #a01c44;
 }
 
