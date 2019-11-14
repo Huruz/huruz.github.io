@@ -151,7 +151,7 @@
     background-color: #f48d2b;
 }
 
-.nav-link.active{
+.nav-link.active, .thead-dark{
     background-color: #005A78 !important;
 }
 
