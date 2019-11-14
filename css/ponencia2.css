@@ -7,10 +7,6 @@
 }
 
 @media (max-width: 576px){
-    .tema{
-        font-size: 1.25rem !important;
-    }
-
     .heading{
         padding: .5rem;
     }
@@ -67,11 +63,7 @@
 }
 
 .tema{
-    font-size: 1.5rem;
-}
-
-.tema, .estadoF, .estadoC, .estadoP{
-    color: white;
+    color: #a41c3c;
 }
 
 .estadoF, .estadoC, .estadoP{

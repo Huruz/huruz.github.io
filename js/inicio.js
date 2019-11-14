@@ -6,10 +6,13 @@
         var forms = document.getElementsByClassName('needs-validation');
 
         $('#nombre').val(null);
+        $('#apellido').val(null);
         $('#email').val(null);
+        $('#estado').val("");
+        $('#nvl').val(null);
+        $('#profesion').val(null);
+        $('#cargo').val(null);
         $('#institucion').val("");
-        $('#rfc').val(null);
-        $('#SSY').hide();
 
         // Loop over them and prevent submission
         $('#registrarBtn').on("click", function () {
@@ -19,18 +22,19 @@
                     event.stopPropagation();
                     console.log("No válido");
                 } else {
-                    var rfc;
-                    if (document.getElementById("rfc").required === true && $('#institucion').val() === "ssy" && $('#rfc').val() != null && $('#rfc').val() != "") {
-                        rfc = $('#rfc').val();
-                    } else {
-                        rfc = "NULL";
-                    }
                     var dataForm = {
                         "nombre": $('#nombre').val(),
+                        "apellido": $('#apellido').val(),
                         "email": $('#email').val(),
-                        "institucion": $('#institucion').val(),
-                        "rfc": rfc
+                        "estado": $("#estado option:selected").text(),
+                        "nivel": $('#nvl').val(),
+                        "profesion": $('#profesion').val(),
+                        "cargo": $('#cargo').val(),
+                        "institucion": $("#institucion option:selected").text(),
                     };
+                    console.log($('#nombre').val() + " " + $('#apellido').val()  + " " + $('#email').val()  + " " + $("#estado option:selected").text()
+                    + " " + $('#nvl').val() + " " + $('#profesion').val() + " " + $('#cargo').val() + " " + $("#institucion option:selected").text());
+                    /*
                     $.ajax({
                         // En data puedes utilizar un objeto JSON, un array o un query string
                         data: dataForm,
@@ -57,22 +61,10 @@
                             $('#modalForm').modal('hide');
                         },5000);
                     });
+                    */
                 }
                 form.classList.add('was-validated');
             }, false);
         });
     });
 })();
-
-function mostrarExtras(combo) {
-    var tipo = $(combo).children("option:selected").val();
-    var rfc = document.getElementById("rfc");
-    if (tipo == "ssy") {
-        $('#SSY').show();
-        rfc.required = true;
-    } else {
-        $('#SSY').hide();
-        rfc.required = false;
-        $(rfc).val(null);
-    }
-}
