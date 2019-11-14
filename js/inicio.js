@@ -33,7 +33,7 @@
                         "institucion": $("#institucion option:selected").text(),
                     };
                     console.log($('#nombre').val() + " " + $('#apellido').val()  + " " + $('#email').val()  + " " + $("#estado option:selected").text()
-                    + " " + ('#nvl').val() + " " + $('#profesion').val() + " " + $('#cargo').val() + " " + $("#institucion option:selected").text());
+                    + " " + $('#nvl').val() + " " + $('#profesion').val() + " " + $('#cargo').val() + " " + $("#institucion option:selected").text());
                     /*
                     $.ajax({
                         // En data puedes utilizar un objeto JSON, un array o un query string
