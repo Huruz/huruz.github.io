@@ -39,7 +39,7 @@
                         // En data puedes utilizar un objeto JSON, un array o un query string
                         data: dataForm,
                         type: "POST",
-                        url: "http://www.jornadacecas.xyz/inscribir.php"
+                        url: "http://www.jornadacecas.xyz/inscribir.php" //Cambiar la URL
                     })
                     .done(function( data, textStatus, jqXHR ) {
                         $('#alerta').text(data.msg);
