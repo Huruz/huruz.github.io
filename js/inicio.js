@@ -32,8 +32,6 @@
                         "cargo": $('#cargo').val(),
                         "institucion": $("#institucion option:selected").text(),
                     };
-                    alert($('#nombre').val() + " " + $('#apellido').val()  + " " + $('#email').val()  + " " + $("#estado option:selected").text()
-                    + " " + ('#nvl').val() + " " + $('#profesion').val() + " " + $('#cargo').val() + " " + $("#institucion option:selected").text());
                     console.log($('#nombre').val() + " " + $('#apellido').val()  + " " + $('#email').val()  + " " + $("#estado option:selected").text()
                     + " " + ('#nvl').val() + " " + $('#profesion').val() + " " + $('#cargo').val() + " " + $("#institucion option:selected").text());
                     /*
