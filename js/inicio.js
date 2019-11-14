@@ -32,14 +32,11 @@
                         "cargo": $('#cargo').val(),
                         "institucion": $("#institucion option:selected").text(),
                     };
-                    console.log($('#nombre').val() + " " + $('#apellido').val()  + " " + $('#email').val()  + " " + $("#estado option:selected").text()
-                    + " " + $('#nvl').val() + " " + $('#profesion').val() + " " + $('#cargo').val() + " " + $("#institucion option:selected").text());
-                    /*
                     $.ajax({
                         // En data puedes utilizar un objeto JSON, un array o un query string
                         data: dataForm,
                         type: "POST",
-                        url: "http://www.jornadacecas.xyz/inscribir.php"
+                        url: "http://www.jornadacecas.xyz/inscribir.php" //Cambiar la URL
                     })
                     .done(function( data, textStatus, jqXHR ) {
                         $('#alerta').text(data.msg);
@@ -61,7 +58,6 @@
                             $('#modalForm').modal('hide');
                         },5000);
                     });
-                    */
                 }
                 form.classList.add('was-validated');
             }, false);
