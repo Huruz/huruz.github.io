@@ -6,16 +6,40 @@
             img{
                 padding: 10px;
             }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            .information {
+                width: 35%;
+                float: left;
+            }
+
+            .game {
+                width: 65%;
+                float: left;
+            }
         </style>
         <script src="./js/keypress.js"></script>
         <script src="./js/naves.js"></script>
     </head>
     <body onload="initiate();">
-        <div>
-            <div>
-                Bienvenido al pooh tero, para iniciar, presiona Enter, para Moverte las flechas y para disparar la barra espaciadora. Si pierdes, reinicia presionando R
+        <div class="row">
+            <div class="game">
+                <canvas id="contenedor" width="630" height="630" style="border: 1px solid #000;"></canvas>
             </div>
-            <canvas id="contenedor" width="630" height="630" style="border: 1px solid #000;"></canvas>
+            <div class="information">
+                <h4 align="center">¡Bienvenido al Pooh-tero!</h4>
+                <p>Para iniciar cada nivel, presiona la tecla Enter.</p>
+                <p>Para moverte usa las flechas y para disparar usa la barra espaciadora.</p>
+                <p>Si pierdes, empezarás desde el nivel 1.</p>
+                <p>Todo el juego consta de 5 niveles.</p>
+                <p>¡Diviérte sino ctm!</p>
+                <p>Si pasas el nivel final, ganarás un ¡Mamut!</p>
+                <h3>Nivel: <span id="nvlActual"></span></h3>
+                <h2><span id="greetings"></span></h2>
+            </div>
         </div>
     </body>
 </html>

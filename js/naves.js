@@ -1,7 +1,7 @@
 var canvas, ctx;
 var imgObjM, imgObjE, imgObjP, imgObjQ;
-const FPS=50;
-const sizeSection=90;
+const FPS=40;
+const sizeSection=40;//2-2-2-5
 var sizeBG=5, maxW_H_C=sizeBG*sizeSection;
 const largeShoot = parseInt(sizeSection/2), shortShoot = parseInt(sizeSection*.4);
 var maxEnemies = parseInt(sizeBG/2)+1;
@@ -11,18 +11,19 @@ var keywordEvent = new window.keypress.Listener(this);
 var keys;
 var isGameEnded = false, hasWon = false, hasStarted = false;
 var nivelActual = 1, nivelesSuperados = 0;
+const nivelesMaximos = 1;
 
 imgObjM = new Image();
-imgObjM.src = "../images/charizard.png";
+imgObjM.src = "./images/charizard.png";
 
 imgObjE = new Image();
-imgObjE.src = "../images/blastoise.png";
+imgObjE.src = "./images/blastoise.png";
 
 imgObjP = new Image();
-imgObjP.src = "../images/venasaur.png";
+imgObjP.src = "./images/venasaur.png";
 
 imgObjQ = new Image();
-imgObjQ.src = "../images/pikachu.png";
+imgObjQ.src = "./images/pikachu.png";
 
 function createTableGame(){
     let a = [];
@@ -59,6 +60,7 @@ function endGame(statusWinner){
     }
     maxEnemies = parseInt(sizeBG/2)+1;
     maxW_H_C=sizeBG*sizeSection;
+    tableG = createTableGame();
 }
 
 var tableG = createTableGame();
@@ -715,7 +717,7 @@ const enemieObj = function(x,y,img){
     this.y = y;
     this.img = img;
     this.index = listener.addEnemie(this);
-    this.space = 4;
+    this.space = 2;
     this.orientation = "D";
     this.ownShoot = new shoot().createForEnemie(this.x+shortShoot,this.y+sizeSection,this.index,this.space+2,this.orientation);
     this.existingShoot = true;
@@ -995,7 +997,7 @@ const enemieObj = function(x,y,img){
 var mainObj = function(){
     this.x = 0;
     this.y = sizeSection*(sizeBG-1);
-    this.space = 4;
+    this.space = 2;
     this.orientation;
     this.nextOrientation;
     this.posibleOrientation;
@@ -1014,16 +1016,16 @@ var mainObj = function(){
         if(this.orientation && !this.existingShoot){
             switch (this.orientation) {
                 case "U":
-                    this.ownShoot = new shoot().createForMain(this.x+shortShoot,this.y-largeShoot,6,this.orientation);
+                    this.ownShoot = new shoot().createForMain(this.x+shortShoot,this.y-largeShoot,4,this.orientation);
                     break;
                 case "R":
-                    this.ownShoot = new shoot().createForMain(this.x+sizeSection,this.y+shortShoot,6,this.orientation);
+                    this.ownShoot = new shoot().createForMain(this.x+sizeSection,this.y+shortShoot,4,this.orientation);
                     break;
                 case "D":
-                    this.ownShoot = new shoot().createForMain(this.x+shortShoot,this.y+sizeSection,6,this.orientation);
+                    this.ownShoot = new shoot().createForMain(this.x+shortShoot,this.y+sizeSection,4,this.orientation);
                     break;
                 case "L":
-                    this.ownShoot = new shoot().createForMain(this.x-largeShoot,this.y+shortShoot,6,this.orientation);
+                    this.ownShoot = new shoot().createForMain(this.x-largeShoot,this.y+shortShoot,4,this.orientation);
                     break;
                 default:
                     break;
@@ -1153,7 +1155,8 @@ var mainObj = function(){
     }
     
     this.draw = function(){
-        ctx.drawImage(imgObjM,this.x,this.y,sizeSection,sizeSection);
+        ctx.drawImage(imgObjM,(this.x+(parseInt(sizeSection*.1))),(this.y+(parseInt(sizeSection*.1))),
+        (sizeSection-(2*(parseInt(sizeSection*.1)))),(sizeSection-(2*(parseInt(sizeSection*.1)))));
 
         if(this.existingShoot){
             this.ownShoot.draw();
@@ -1256,9 +1259,8 @@ function startGame(){
 function resetGame(){
     if(isGameEnded){
         isGameEnded = false;
-        hasStarted = true;
+        hasStarted = false;
         hasWon = false;
-        tableG = createTableGame();
         
         initiate();
     }
@@ -1270,7 +1272,7 @@ keywordEvent.simple_combo("left", left);
 keywordEvent.simple_combo("right", right);*/
 keywordEvent.simple_combo("enter", startGame);
 keywordEvent.simple_combo("space", space);
-keywordEvent.simple_combo("r", resetGame);
+//keywordEvent.simple_combo("r", resetGame);
 
 function resetTable(){
     canvas.width=maxW_H_C;
@@ -1279,8 +1281,6 @@ function resetTable(){
 
 function main(){
     let allEnemiesDead = true;
-    resetTable();
-    drawTable();
 
     if (keys[39]) {
         right();
@@ -1320,6 +1320,8 @@ function initiate(){
     listenerShoots = new objListenerShoots();
     objM = new mainObj();
     keys = {};
+
+    (document.getElementById("nvlActual").textContent) = nivelActual;
     /*
     objE = new enemieObj(0,0,imgObjE);
     objE2 = new enemieObj(180,0,imgObjP);
@@ -1343,19 +1345,27 @@ function initiate(){
     createEnemiesG();
     
             let interval = setInterval(function(){
+                resetTable();
+                drawTable();
                 if(!isGameEnded && hasStarted){
                     main();
                 } else if(isGameEnded){
                     clearInterval(interval);
 
                     if(hasWon){
-                        alert("Has ganado, pasarás al siguiente nivel");
+                        
+                        if(hasWon && nivelesSuperados==nivelesMaximos)
+                            (document.getElementById("greetings").textContent) = "Has terminado, muchas gracias por jugar, si quieres jugar de nuevo, recarga la página (F5).";
+                        else
+                            alert("Has ganado, pasarás al siguiente nivel");
                     } else{
                         alert("Has perdido con "+nivelesSuperados+" juegos ganados");
                         nivelesSuperados=0;
                     }
-                    resetGame();
+                    if(nivelActual<=nivelesMaximos)
+                        resetGame();
                 }
             },1000/FPS);
+
     console.log("Adios!");
 }
