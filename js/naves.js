@@ -11,7 +11,7 @@ var keywordEvent = new window.keypress.Listener(this);
 var keys;
 var isGameEnded = false, hasWon = false, hasStarted = false;
 var nivelActual = 1, nivelesSuperados = 0;
-const nivelesMaximos = 1;
+const nivelesMaximos = 6;
 
 imgObjM = new Image();
 imgObjM.src = "./images/charizard.png";
