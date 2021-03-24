@@ -1,29 +1,37 @@
 var canvas, ctx;
-var imgObjM, imgObjE, imgObjP, imgObjQ;
+var imgObjM, imgObjB, imgObjP, imgObjV;
 const FPS=40;
-const sizeSection=40;//2-2-2-5
+const sizeSection=40;//1-2-2-2-5
+const velocitiesObjs =   [1,2,4,5,6];
+const velocitiesShoots = [2,4,5,6,8];
 var sizeBG=5, maxW_H_C=sizeBG*sizeSection;
-const largeShoot = parseInt(sizeSection/2), shortShoot = parseInt(sizeSection*.4);
+const largeShoot = parseInt(sizeSection/2), shortShoot = parseInt(sizeSection*.4), marginObjs=(parseInt(sizeSection*.1));
 var maxEnemies = parseInt(sizeBG/2)+1;
 var objM, listener, listenerShoots;
 const waitingTimeShoot = 100;
 var keywordEvent = new window.keypress.Listener(this);
 var keys;
 var isGameEnded = false, hasWon = false, hasStarted = false;
-var nivelActual = 1, nivelesSuperados = 0;
+var nivelActual = 1, nivelesSuperados = 0, actualVelocityIdx = 1;
 const nivelesMaximos = 6;
 
 imgObjM = new Image();
 imgObjM.src = "./images/charizard.png";
 
-imgObjE = new Image();
-imgObjE.src = "./images/blastoise.png";
+imgObjB = new Image();
+imgObjB.src = "./images/blastoise.png";
+
+imgObjV = new Image();
+imgObjV.src = "./images/venasaur.png";
 
 imgObjP = new Image();
-imgObjP.src = "./images/venasaur.png";
+imgObjP.src = "./images/pikachu.png";
 
-imgObjQ = new Image();
-imgObjQ.src = "./images/pikachu.png";
+const imgList = [
+    {"imgObj" : imgObjB, "color" : "#19A6C7"},
+    {"imgObj" : imgObjV, "color" : "#0BA55F"},
+    {"imgObj" : imgObjP, "color" : "#FFEB21"}
+];
 
 function createTableGame(){
     let a = [];
@@ -53,9 +61,16 @@ function endGame(statusWinner){
     if(statusWinner){
         nivelActual++;
         nivelesSuperados++;
+/*
+        if(actualVelocityIdx<3){
+            actualVelocityIdx++;
+        }
+*/
         sizeBG += 2;
     }else{
-        nivelActual = 1;
+        nivelActual = 1;/*
+        actualVelocityIdx=0;
+        actualVelocityShoot=2;*/
         sizeBG = 5;
     }
     maxEnemies = parseInt(sizeBG/2)+1;
@@ -524,13 +539,13 @@ const shoot = function(){
     this.isMain = false;
     this.color;
 
-    this.createForEnemie = function(x,y,index, velocity, orientation){
+    this.createForEnemie = function(x,y,index, velocity, orientation,color){
         this.x = x;
         this.y = y;
         this.orientation = orientation;
         this.indexFather = listenerShoots.addShoot(this,index);
         this.velocity = velocity;
-        this.color = "#19A6C7";
+        this.color = color;
 
         return this
     }
@@ -715,11 +730,11 @@ const shoot = function(){
 const enemieObj = function(x,y,img){
     this.x = x;
     this.y = y;
-    this.img = img;
+    this.idxImg = img;
     this.index = listener.addEnemie(this);
-    this.space = 2;
+    this.space = velocitiesObjs[actualVelocityIdx];
     this.orientation = "D";
-    this.ownShoot = new shoot().createForEnemie(this.x+shortShoot,this.y+sizeSection,this.index,this.space+2,this.orientation);
+    this.ownShoot = new shoot().createForEnemie(this.x+shortShoot,this.y+sizeSection,this.index,velocitiesShoots[actualVelocityIdx],this.orientation, imgList[this.idxImg].color);
     this.existingShoot = true;
     this.count = waitingTimeShoot;
     this.isDead = false;
@@ -874,56 +889,56 @@ const enemieObj = function(x,y,img){
 
         switch (this.orientation) {
             case "U":
-                if((enemieFocused.p1[0]>=(objM.x) && enemieFocused.p1[1]<=(objM.y+sizeSection)
-                    && enemieFocused.p1[0]<=(objM.x+sizeSection) && enemieFocused.p1[1]<=(objM.y+sizeSection)
-                    && enemieFocused.p1[0]>=(objM.x) && enemieFocused.p1[1]>=(objM.y)
-                    && enemieFocused.p1[0]<=(objM.x+sizeSection) && enemieFocused.p1[1]>=(objM.y))
-                    || (enemieFocused.p3[0]>=(objM.x) && enemieFocused.p1[1]<=(objM.y+sizeSection)
-                    && enemieFocused.p3[0]<=(objM.x+sizeSection) && enemieFocused.p1[1]<=(objM.y+sizeSection)
-                    && enemieFocused.p3[0]>=(objM.x) && enemieFocused.p1[1]>=(objM.y)
-                    && enemieFocused.p3[0]<=(objM.x+sizeSection) && enemieFocused.p1[1]>=(objM.y))){
+                if((enemieFocused.p1[0]+marginObjs>=(objM.x+marginObjs) && enemieFocused.p1[1]+marginObjs<=(objM.y+sizeSection-marginObjs)
+                    && enemieFocused.p1[0]+marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p1[1]+marginObjs<=(objM.y+sizeSection-marginObjs)
+                    && enemieFocused.p1[0]+marginObjs>=(objM.x+marginObjs) && enemieFocused.p1[1]+marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p1[0]+marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p1[1]+marginObjs>=(objM.y+marginObjs))
+                    || (enemieFocused.p3[0]-marginObjs>=(objM.x+marginObjs) && enemieFocused.p3[1]+marginObjs<=(objM.y+sizeSection-marginObjs)
+                    && enemieFocused.p3[0]-marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p3[1]+marginObjs<=(objM.y+sizeSection-marginObjs)
+                    && enemieFocused.p3[0]-marginObjs>=(objM.x+marginObjs) && enemieFocused.p3[1]+marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p3[0]-marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p3[1]+marginObjs>=(objM.y+marginObjs))){
                     objM.resetMain();
                     endGame(false);
                     //listenerShoots.resetOwnShoot(shootFocused);
                 }
                 break;
             case "R":
-                if((enemieFocused.p3[0]>=(objM.x) && enemieFocused.p3[1]>=(objM.y)
-                    && enemieFocused.p3[0]>=(objM.x) && enemieFocused.p3[1]<=(objM.y+sizeSection)
-                    && enemieFocused.p3[0]<=(objM.x+sizeSection) && enemieFocused.p3[1]>=(objM.y)
-                    && enemieFocused.p3[0]<=(objM.x+sizeSection) && enemieFocused.p3[1]<=(objM.y+sizeSection))
-                    || (enemieFocused.p4[0]>=(objM.x) && enemieFocused.p4[1]>=(objM.y)
-                    && enemieFocused.p4[0]>=(objM.x) && enemieFocused.p4[1]<=(objM.y+sizeSection)
-                    && enemieFocused.p4[0]<=(objM.x+sizeSection) && enemieFocused.p4[1]>=(objM.y)
-                    && enemieFocused.p4[0]<=(objM.x+sizeSection) && enemieFocused.p4[1]<=(objM.y+sizeSection))){
+                if((enemieFocused.p3[0]-marginObjs>=(objM.x+marginObjs) && enemieFocused.p3[1]+marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p3[0]-marginObjs>=(objM.x+marginObjs) && enemieFocused.p3[1]+marginObjs<=(objM.y+sizeSection-marginObjs)
+                    && enemieFocused.p3[0]-marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p3[1]+marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p3[0]-marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p3[1]+marginObjs<=(objM.y+sizeSection-marginObjs))
+                    || (enemieFocused.p4[0]-marginObjs>=(objM.x+marginObjs) && enemieFocused.p4[1]-marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p4[0]-marginObjs>=(objM.x+marginObjs) && enemieFocused.p4[1]-marginObjs<=(objM.y+sizeSection-marginObjs)
+                    && enemieFocused.p4[0]-marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p4[1]-marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p4[0]-marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p4[1]-marginObjs<=(objM.y+sizeSection-marginObjs))){
                     objM.resetMain();
                     endGame(false);
                     //listenerShoots.resetOwnShoot(shootFocused);
                 }
                 break;
             case "D":
-                if((enemieFocused.p2[0]>=(objM.x) && enemieFocused.p2[1]>=(objM.y)
-                    && enemieFocused.p2[0]<=(objM.x+sizeSection) && enemieFocused.p2[1]>=(objM.y)
-                    && enemieFocused.p2[0]>=(objM.x) && enemieFocused.p2[1]<=(objM.y+sizeSection)
-                    && enemieFocused.p2[0]<=(objM.x+sizeSection) && enemieFocused.p2[1]<=(objM.y+sizeSection))
-                    || (enemieFocused.p4[0]>=(objM.x) && enemieFocused.p4[1]>=(objM.y)
-                    && enemieFocused.p4[0]<=(objM.x+sizeSection) && enemieFocused.p4[1]>=(objM.y)
-                    && enemieFocused.p4[0]>=(objM.x) && enemieFocused.p4[1]<=(objM.y+sizeSection)
-                    && enemieFocused.p4[0]<=(objM.x+sizeSection) && enemieFocused.p4[1]<=(objM.y+sizeSection))){
+                if((enemieFocused.p2[0]+marginObjs>=(objM.x+marginObjs) && enemieFocused.p2[1]-marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p2[0]+marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p2[1]-marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p2[0]+marginObjs>=(objM.x+marginObjs) && enemieFocused.p2[1]-marginObjs<=(objM.y+sizeSection-marginObjs)
+                    && enemieFocused.p2[0]+marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p2[1]-marginObjs<=(objM.y+sizeSection-marginObjs))
+                    || (enemieFocused.p4[0]-marginObjs>=(objM.x+marginObjs) && enemieFocused.p4[1]-marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p4[0]-marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p4[1]-marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p4[0]-marginObjs>=(objM.x+marginObjs) && enemieFocused.p4[1]-marginObjs<=(objM.y+sizeSection-marginObjs)
+                    && enemieFocused.p4[0]-marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p4[1]-marginObjs<=(objM.y+sizeSection-marginObjs))){
                     objM.resetMain();
                     endGame(false);
                     //listenerShoots.resetOwnShoot(shootFocused);
                 }
                 break;
             case "L":
-                if((enemieFocused.p1[0]<=(objM.x+sizeSection) && enemieFocused.p1[1]>=(objM.y)
-                    && enemieFocused.p1[0]<=(objM.x+sizeSection) && enemieFocused.p1[1]<=(objM.y+sizeSection)
-                    && enemieFocused.p1[0]>=(objM.x) && enemieFocused.p1[1]>=(objM.y)
-                    && enemieFocused.p1[0]>=(objM.x) && enemieFocused.p1[1]<=(objM.y+sizeSection))
-                    || (enemieFocused.p2[0]<=(objM.x+sizeSection) && enemieFocused.p2[1]>=(objM.y)
-                    && enemieFocused.p2[0]<=(objM.x+sizeSection) && enemieFocused.p2[1]<=(objM.y+sizeSection)
-                    && enemieFocused.p2[0]>=(objM.x) && enemieFocused.p2[1]>=(objM.y)
-                    && enemieFocused.p2[0]>=(objM.x) && enemieFocused.p2[1]<=(objM.y+sizeSection))){
+                if((enemieFocused.p1[0]+marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p1[1]+marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p1[0]+marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p1[1]+marginObjs<=(objM.y+sizeSection-marginObjs)
+                    && enemieFocused.p1[0]+marginObjs>=(objM.x+marginObjs) && enemieFocused.p1[1]+marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p1[0]+marginObjs>=(objM.x+marginObjs) && enemieFocused.p1[1]+marginObjs<=(objM.y+sizeSection-marginObjs))
+                    || (enemieFocused.p2[0]+marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p2[1]-marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p2[0]+marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p2[1]-marginObjs<=(objM.y+sizeSection-marginObjs)
+                    && enemieFocused.p2[0]+marginObjs>=(objM.x+marginObjs) && enemieFocused.p2[1]-marginObjs>=(objM.y+marginObjs)
+                    && enemieFocused.p2[0]+marginObjs>=(objM.x+marginObjs) && enemieFocused.p2[1]-marginObjs<=(objM.y+sizeSection-marginObjs))){
                     objM.resetMain();
                     endGame(false);
                     //listenerShoots.resetOwnShoot(shootFocused);
@@ -959,16 +974,16 @@ const enemieObj = function(x,y,img){
         if(this.count==0){
             switch (this.orientation) {
                 case "U":
-                    this.ownShoot = new shoot().createForEnemie(this.x+shortShoot,this.y-largeShoot,this.index,this.space+2,this.orientation);
+                    this.ownShoot = new shoot().createForEnemie(this.x+shortShoot,this.y-largeShoot,this.index,velocitiesShoots[actualVelocityIdx],this.orientation,imgList[this.idxImg].color);
                     break;
                 case "R":
-                    this.ownShoot = new shoot().createForEnemie(this.x+sizeSection,this.y+shortShoot,this.index,this.space+2,this.orientation);
+                    this.ownShoot = new shoot().createForEnemie(this.x+sizeSection,this.y+shortShoot,this.index,velocitiesShoots[actualVelocityIdx],this.orientation, imgList[this.idxImg].color);
                     break;
                 case "D":
-                    this.ownShoot = new shoot().createForEnemie(this.x+shortShoot,this.y+sizeSection,this.index,this.space+2,this.orientation);
+                    this.ownShoot = new shoot().createForEnemie(this.x+shortShoot,this.y+sizeSection,this.index,velocitiesShoots[actualVelocityIdx],this.orientation,imgList[this.idxImg].color);
                     break;
                 case "L":
-                    this.ownShoot = new shoot().createForEnemie(this.x-largeShoot,this.y+shortShoot,this.index,this.space+2,this.orientation);
+                    this.ownShoot = new shoot().createForEnemie(this.x-largeShoot,this.y+shortShoot,this.index,velocitiesShoots[actualVelocityIdx],this.orientation,imgList[this.idxImg].color);
                     break;
                 default:
                     break;
@@ -979,8 +994,8 @@ const enemieObj = function(x,y,img){
     }
     
     this.draw = function(){
-        ctx.drawImage(this.img,(this.x+(parseInt(sizeSection*.1))),(this.y+(parseInt(sizeSection*.1))),
-            (sizeSection-(2*(parseInt(sizeSection*.1)))),(sizeSection-(2*(parseInt(sizeSection*.1)))));
+        ctx.drawImage(imgList[this.idxImg].imgObj,(this.x+marginObjs),(this.y+marginObjs),
+            (sizeSection-(2*marginObjs)),(sizeSection-(2*marginObjs)));
         
         if(this.existingShoot){
             this.ownShoot.draw();
@@ -997,7 +1012,7 @@ const enemieObj = function(x,y,img){
 var mainObj = function(){
     this.x = 0;
     this.y = sizeSection*(sizeBG-1);
-    this.space = 2;
+    this.space = velocitiesObjs[actualVelocityIdx];
     this.orientation;
     this.nextOrientation;
     this.posibleOrientation;
@@ -1016,16 +1031,16 @@ var mainObj = function(){
         if(this.orientation && !this.existingShoot){
             switch (this.orientation) {
                 case "U":
-                    this.ownShoot = new shoot().createForMain(this.x+shortShoot,this.y-largeShoot,4,this.orientation);
+                    this.ownShoot = new shoot().createForMain(this.x+shortShoot,this.y-largeShoot,velocitiesShoots[actualVelocityIdx],this.orientation);
                     break;
                 case "R":
-                    this.ownShoot = new shoot().createForMain(this.x+sizeSection,this.y+shortShoot,4,this.orientation);
+                    this.ownShoot = new shoot().createForMain(this.x+sizeSection,this.y+shortShoot,velocitiesShoots[actualVelocityIdx],this.orientation);
                     break;
                 case "D":
-                    this.ownShoot = new shoot().createForMain(this.x+shortShoot,this.y+sizeSection,4,this.orientation);
+                    this.ownShoot = new shoot().createForMain(this.x+shortShoot,this.y+sizeSection,velocitiesShoots[actualVelocityIdx],this.orientation);
                     break;
                 case "L":
-                    this.ownShoot = new shoot().createForMain(this.x-largeShoot,this.y+shortShoot,4,this.orientation);
+                    this.ownShoot = new shoot().createForMain(this.x-largeShoot,this.y+shortShoot,velocitiesShoots[actualVelocityIdx],this.orientation);
                     break;
                 default:
                     break;
@@ -1155,8 +1170,8 @@ var mainObj = function(){
     }
     
     this.draw = function(){
-        ctx.drawImage(imgObjM,(this.x+(parseInt(sizeSection*.1))),(this.y+(parseInt(sizeSection*.1))),
-        (sizeSection-(2*(parseInt(sizeSection*.1)))),(sizeSection-(2*(parseInt(sizeSection*.1)))));
+        ctx.drawImage(imgObjM,(this.x+marginObjs),(this.y+marginObjs),
+        (sizeSection-(2*marginObjs)),(sizeSection-(2*marginObjs)));
 
         if(this.existingShoot){
             this.ownShoot.draw();
@@ -1185,10 +1200,16 @@ function drawTable(){
 };
 
 function createEnemiesG(){
-    let imgs = 0;
+    let idxImg=0;
     for (let index = 0; index < maxEnemies; index++) {
         let a = index*2*sizeSection;
-        new enemieObj(a,0,imgObjE);
+        new enemieObj(a,0,idxImg);
+
+        if(idxImg<imgList.length-1){
+            idxImg++;
+        } else{
+            idxImg=0;
+        }
     }
 };
 
