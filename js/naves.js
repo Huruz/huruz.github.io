@@ -9,7 +9,7 @@ const largeShoot = parseInt(sizeSection/2), shortShoot = parseInt(sizeSection*.4
 var maxEnemies = parseInt(sizeBG/2)+1;
 var objM, listener, listenerShoots;
 const waitingTimeShoot = 100;
-var keywordEvent = new window.keypress.Listener(this);
+//var keywordEvent = new window.keypress.Listener(this);
 var keys;
 var isGameEnded = false, hasWon = false, hasStarted = false;
 var nivelActual = 1, nivelesSuperados = 0, actualVelocityIdx = 0;
@@ -1294,10 +1294,10 @@ function resetGame(){
 keywordEvent.simple_combo("up", up);
 keywordEvent.simple_combo("down", down);
 keywordEvent.simple_combo("left", left);
-keywordEvent.simple_combo("right", right);*/
+keywordEvent.simple_combo("right", right);
 keywordEvent.simple_combo("enter", startGame);
 keywordEvent.simple_combo("space", space);
-//keywordEvent.simple_combo("r", resetGame);
+keywordEvent.simple_combo("r", resetGame);*/
 
 function resetTable(){
     canvas.width=maxW_H_C;
@@ -1307,17 +1307,21 @@ function resetTable(){
 function main(){
     let allEnemiesDead = true;
 
-    if (keys[39]) {
+    if (keys[39] || keys[68]) {
         right();
     }
-    if (keys[37]) {
+    if (keys[37] || keys[65]) {
         left();
     }
-    if (keys[40]) {
+    if (keys[40] || keys[83]) {
         down();
     }
-    if (keys[38]) {
+    if (keys[38] || keys[87]) {
         up();
+    }
+    if(keys[32]){
+      space();
+      delete keys[32];
     }
 
     objM.draw();
@@ -1358,33 +1362,39 @@ function initiate(){
         keys[event.which] = true;
     });
     document.addEventListener('keyup', function(event){
+      if(event.which!=13 && event.which!=32)
         delete keys[event.which];
     });
 
     createEnemiesG();
 
-            let interval = setInterval(function(){
-                resetTable();
-                drawTable();
-                if(!isGameEnded && hasStarted){
-                    main();
-                } else if(isGameEnded){
-                    clearInterval(interval);
+    let interval = setInterval(function(){
+      resetTable();
+      drawTable();
 
-                    if(hasWon){
+      if(keys[13]){
+        startGame();
+        delete keys[13];
+      }
 
-                        if(hasWon && nivelesSuperados==nivelesMaximos)
-                            (document.getElementById("greetings").textContent) = "Has terminado, muchas gracias por jugar, si quieres jugar de nuevo, recarga la página (F5).";
-                        else
-                            alert("Has ganado, pasarás al siguiente nivel");
-                    } else{
-                        alert("Has perdido con "+nivelesSuperados+" juegos ganados");
-                        nivelesSuperados=0;
-                    }
-                    if(nivelActual<=nivelesMaximos)
-                        resetGame();
-                }
-            },1000/FPS);
+      if(!isGameEnded && hasStarted){
+        main();
+      } else if(isGameEnded){
+        clearInterval(interval);
+
+        if(hasWon){
+          if(hasWon && nivelesSuperados==nivelesMaximos)
+            (document.getElementById("greetings").textContent) = "Has terminado, muchas gracias por jugar, si quieres jugar de nuevo, recarga la página (F5).";
+          else
+            alert("Has ganado, pasarás al siguiente nivel");
+        } else{
+          alert("Has perdido con "+nivelesSuperados+" juegos ganados");
+          nivelesSuperados=0;
+        }
+        if(nivelActual<=nivelesMaximos)
+          resetGame();
+      }
+    },1000/FPS);
 
     console.log("Adios!");
 }
