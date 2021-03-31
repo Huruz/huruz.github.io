@@ -886,9 +886,9 @@ const enemieObj = function(x,y,img){
 
     this.mainTouched = function(){
         let enemieFocused = listener.objList[this.index-1];
-
+/*
         switch (this.orientation) {
-            case "U":
+            case "U":*/
                 if((enemieFocused.p1[0]+marginObjs>=(objM.x+marginObjs) && enemieFocused.p1[1]+marginObjs<=(objM.y+sizeSection-marginObjs)
                     && enemieFocused.p1[0]+marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p1[1]+marginObjs<=(objM.y+sizeSection-marginObjs)
                     && enemieFocused.p1[0]+marginObjs>=(objM.x+marginObjs) && enemieFocused.p1[1]+marginObjs>=(objM.y+marginObjs)
@@ -900,9 +900,9 @@ const enemieObj = function(x,y,img){
                     objM.resetMain();
                     endGame(false);
                     //listenerShoots.resetOwnShoot(shootFocused);
-                }
+                }/*
                 break;
-            case "R":
+            case "R":*/
                 if((enemieFocused.p3[0]-marginObjs>=(objM.x+marginObjs) && enemieFocused.p3[1]+marginObjs>=(objM.y+marginObjs)
                     && enemieFocused.p3[0]-marginObjs>=(objM.x+marginObjs) && enemieFocused.p3[1]+marginObjs<=(objM.y+sizeSection-marginObjs)
                     && enemieFocused.p3[0]-marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p3[1]+marginObjs>=(objM.y+marginObjs)
@@ -914,9 +914,9 @@ const enemieObj = function(x,y,img){
                     objM.resetMain();
                     endGame(false);
                     //listenerShoots.resetOwnShoot(shootFocused);
-                }
+                }/*
                 break;
-            case "D":
+            case "D":*/
                 if((enemieFocused.p2[0]+marginObjs>=(objM.x+marginObjs) && enemieFocused.p2[1]-marginObjs>=(objM.y+marginObjs)
                     && enemieFocused.p2[0]+marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p2[1]-marginObjs>=(objM.y+marginObjs)
                     && enemieFocused.p2[0]+marginObjs>=(objM.x+marginObjs) && enemieFocused.p2[1]-marginObjs<=(objM.y+sizeSection-marginObjs)
@@ -928,9 +928,9 @@ const enemieObj = function(x,y,img){
                     objM.resetMain();
                     endGame(false);
                     //listenerShoots.resetOwnShoot(shootFocused);
-                }
+                }/*
                 break;
-            case "L":
+            case "L":*/
                 if((enemieFocused.p1[0]+marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p1[1]+marginObjs>=(objM.y+marginObjs)
                     && enemieFocused.p1[0]+marginObjs<=(objM.x+sizeSection-marginObjs) && enemieFocused.p1[1]+marginObjs<=(objM.y+sizeSection-marginObjs)
                     && enemieFocused.p1[0]+marginObjs>=(objM.x+marginObjs) && enemieFocused.p1[1]+marginObjs>=(objM.y+marginObjs)
@@ -942,11 +942,11 @@ const enemieObj = function(x,y,img){
                     objM.resetMain();
                     endGame(false);
                     //listenerShoots.resetOwnShoot(shootFocused);
-                }
+                }/*
                 break;
             default:
                 break;
-        }
+        }*/
     }
 
     this.move = function(){
