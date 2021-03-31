@@ -12,7 +12,7 @@ const waitingTimeShoot = 100;
 var keywordEvent = new window.keypress.Listener(this);
 var keys;
 var isGameEnded = false, hasWon = false, hasStarted = false;
-var nivelActual = 1, nivelesSuperados = 0, actualVelocityIdx = 1;
+var nivelActual = 1, nivelesSuperados = 0, actualVelocityIdx = 0;
 const nivelesMaximos = 6;
 
 imgObjM = new Image();
@@ -61,16 +61,16 @@ function endGame(statusWinner){
     if(statusWinner){
         nivelActual++;
         nivelesSuperados++;
-/*
+
         if(actualVelocityIdx<3){
             actualVelocityIdx++;
         }
-*/
+
         sizeBG += 2;
     }else{
-        nivelActual = 1;/*
+        nivelActual = 1;
         actualVelocityIdx=0;
-        actualVelocityShoot=2;*/
+        //actualVelocityShoot=2;
         sizeBG = 5;
     }
     maxEnemies = parseInt(sizeBG/2)+1;
@@ -224,13 +224,13 @@ const objListenerShoots = function(){
         }
         this.objList[index-1] = shoot;
     }
-    
+
     this.resetOtherShoot = function(otherShoot){
         listener.objList[(otherShoot.itself.indexFather)-1].itself.ownShoot = null;
         listener.objList[(otherShoot.itself.indexFather)-1].itself.existingShoot = false;
         listenerShoots.objList[(otherShoot.itself.indexFather)-1].itself.crashed = true;
     }
-    
+
     this.resetOwnShoot = function(ownShoot){
         listener.objList[(ownShoot.itself.indexFather)-1].itself.ownShoot.crashed = true;
         listener.objList[(ownShoot.itself.indexFather)-1].itself.existingShoot = false;
@@ -564,7 +564,7 @@ const shoot = function(){
     this.colision = function(x,y){
         let colision = false;
         let idX, idY;
-        
+
         idX = parseInt(x/sizeSection);
         idY = parseInt(y/sizeSection);
 
@@ -575,16 +575,16 @@ const shoot = function(){
 
     this.colisionObject = function(orientation){
         if(!this.isMain){
-            return (listenerShoots.friendlyShootColision(this.indexFather, orientation) 
+            return (listenerShoots.friendlyShootColision(this.indexFather, orientation)
             || listenerShoots.friendlyEnemieColision(this.indexFather, orientation));
         } else{
-            return (listenerShoots.shootColision(this, orientation) 
+            return (listenerShoots.shootColision(this, orientation)
             || listenerShoots.enemieColision(this, orientation));
         }
     }
 
     this.up = function(){
-        if(this.y>0 && !this.colision(this.x,this.y-1) && !this.colision(this.x+(sizeSection-(2*shortShoot))-1,this.y-1) 
+        if(this.y>0 && !this.colision(this.x,this.y-1) && !this.colision(this.x+(sizeSection-(2*shortShoot))-1,this.y-1)
             && !this.colisionObject("U")){
             this.y -= this.velocity;
         } else{
@@ -690,7 +690,7 @@ const shoot = function(){
                 this.up();
                 break;
             case "D":
-                this.down();   
+                this.down();
                 break;
             case "L":
                 this.left();
@@ -723,7 +723,7 @@ const shoot = function(){
                 ctx.fillRect((this.x),(this.y),largeShoot,(sizeSection-(2*shortShoot)));
                 break;
         }
-        
+
     }
 }
 
@@ -742,7 +742,7 @@ const enemieObj = function(x,y,img){
     this.colision = function(x,y){
         let colision = false;
         let idX, idY;
-        
+
         idX = parseInt(x/sizeSection);
         idY = parseInt(y/sizeSection);
 
@@ -760,7 +760,7 @@ const enemieObj = function(x,y,img){
         let orientations = ["U","R","L"];
         let colisionU = false, colisionR = false, colisionL = false;
 
-        if(this.y>0 && !this.colision(this.x,this.y-1) && !this.colision(this.x+sizeSection-1,this.y-1) 
+        if(this.y>0 && !this.colision(this.x,this.y-1) && !this.colision(this.x+sizeSection-1,this.y-1)
             && !listener.friendlyColision(this.index, "U")){
             this.y -= this.space;
         } else{
@@ -781,7 +781,7 @@ const enemieObj = function(x,y,img){
         }
         if(listener.friendlyColision(this.index, "U"))
             orientations.push("D");
-        
+
         if(orientations.length<=0)
             orientations.push("D");
 
@@ -792,7 +792,7 @@ const enemieObj = function(x,y,img){
         let orientations = ["D","R","L"];
         let colisionD = false, colisionR = false, colisionL = false;
 
-        if(this.y+sizeSection<maxW_H_C && !this.colision(this.x,this.y+sizeSection+1) && !this.colision(this.x+sizeSection-1,this.y+sizeSection+1)
+        if(this.y+sizeSection<maxW_H_C && !this.colision(this.x,this.y+sizeSection) && !this.colision(this.x+sizeSection-1,this.y+sizeSection)
             && !listener.friendlyColision(this.index, "D")){
             this.y += this.space;
         } else{
@@ -823,7 +823,7 @@ const enemieObj = function(x,y,img){
     this.left = function(){
         let orientations = ["L","U","D"];
         let colisionL = false, colisionU = false, colisionD = false;
-        
+
         if(this.x>0 && !this.colision(this.x-1,this.y) && !this.colision(this.x-1,this.y+sizeSection-1)
             && !listener.friendlyColision(this.index, "L")){
             this.x -= this.space;
@@ -855,7 +855,7 @@ const enemieObj = function(x,y,img){
     this.right = function(){
         let orientations = ["R","U","D"];
         let colisionR = false, colisionU = false, colisionD = false;
-        
+
         if(this.x+sizeSection<maxW_H_C && !this.colision(this.x+sizeSection,this.y) && !this.colision(this.x+sizeSection,this.y+sizeSection-1)
             && !listener.friendlyColision(this.index, "R")){
             this.x += this.space;
@@ -992,11 +992,11 @@ const enemieObj = function(x,y,img){
             this.count = waitingTimeShoot;
         } else this.count--;
     }
-    
+
     this.draw = function(){
         ctx.drawImage(imgList[this.idxImg].imgObj,(this.x+marginObjs),(this.y+marginObjs),
             (sizeSection-(2*marginObjs)),(sizeSection-(2*marginObjs)));
-        
+
         if(this.existingShoot){
             this.ownShoot.draw();
             this.ownShoot.move();
@@ -1050,18 +1050,22 @@ var mainObj = function(){
     }
 
     this.colision = function(x,y){
-        let colision = false;
+      let colision = false;
+      let idX, idY;
 
-        if(tableG[parseInt(y/sizeSection)][parseInt(x/sizeSection)]==1) colision = true;
+      idX = parseInt(x/sizeSection);
+      idY = parseInt(y/sizeSection);
 
-        return colision;
+      if(idX<0 || idX>=sizeBG || idY<0 || idY>=sizeBG || tableG[idY][idX]==1) colision = true;
+
+      return colision;
     }
 
     this.proceedToMove = function(orientation){
         //if(this.isKeepGoing){
             switch (orientation) {
                 case "U":
-                    this.y -= this.space;                    
+                    this.y -= this.space;
                     break;
                 case "D":
                     this.y += this.space;
@@ -1101,7 +1105,7 @@ var mainObj = function(){
     }
 
     this.down = function(){
-        if(this.y+sizeSection<maxW_H_C && !this.colision(this.x,this.y+sizeSection+1) && !this.colision(this.x+sizeSection-1,this.y+sizeSection+1)){
+        if(this.y+sizeSection<maxW_H_C && !this.colision(this.x,this.y+sizeSection) && !this.colision(this.x+sizeSection-1,this.y+sizeSection)){
             this.proceedToMove("D");
         } else{/*
             this.nextOrientation = this.orientation;
@@ -1168,7 +1172,7 @@ var mainObj = function(){
             this.posibleOrientation = null;
         }*/
     }
-    
+
     this.draw = function(){
         ctx.drawImage(imgObjM,(this.x+marginObjs),(this.y+marginObjs),
         (sizeSection-(2*marginObjs)),(sizeSection-(2*marginObjs)));
@@ -1195,7 +1199,7 @@ function drawTable(){
             else ctx.fillStyle = "#5E5897";
 
             ctx.fillRect(ix*sizeSection,iy*sizeSection,sizeSection,sizeSection);
-        }        
+        }
     }
 };
 
@@ -1282,7 +1286,7 @@ function resetGame(){
         isGameEnded = false;
         hasStarted = false;
         hasWon = false;
-        
+
         initiate();
     }
 }
@@ -1309,7 +1313,7 @@ function main(){
     if (keys[37]) {
         left();
     }
-    if (keys[40]) {     
+    if (keys[40]) {
         down();
     }
     if (keys[38]) {
@@ -1317,7 +1321,7 @@ function main(){
     }
 
     objM.draw();
-        
+
     listener.objList.forEach(function(obj){
         if(!obj.itself.isDead){
             obj.itself.draw();
@@ -1356,15 +1360,9 @@ function initiate(){
     document.addEventListener('keyup', function(event){
         delete keys[event.which];
     });
-/*
-    $(document).keydown(function(event){
-        keys[event.which] = true;
-      }).keyup(function(event){
-        delete keys[event.which];
-      });
-*/
+
     createEnemiesG();
-    
+
             let interval = setInterval(function(){
                 resetTable();
                 drawTable();
@@ -1374,7 +1372,7 @@ function initiate(){
                     clearInterval(interval);
 
                     if(hasWon){
-                        
+
                         if(hasWon && nivelesSuperados==nivelesMaximos)
                             (document.getElementById("greetings").textContent) = "Has terminado, muchas gracias por jugar, si quieres jugar de nuevo, recarga la página (F5).";
                         else
